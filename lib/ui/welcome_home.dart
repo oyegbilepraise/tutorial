@@ -1,50 +1,83 @@
 import 'package:flutter/material.dart';
 
 class Welcome extends StatelessWidget {
+  void _onPress() {
+    print('Pressed');
+  }
+
   const Welcome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
-      color: Colors.blue,
-      alignment: Alignment.center,
-      child: new Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'Praise',
-            textDirection: TextDirection.ltr,
-            style: TextStyle(
-              fontSize: 20,
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.blue.shade800,
+          title: Text('Praise Oye'),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.send),
+              onPressed: () => debugPrint('Icon Tapped'),
             ),
-          ),
-          Text(
-            'Eunice',
-            textDirection: TextDirection.ltr,
-            style: TextStyle(
-              fontSize: 20,
+            IconButton(
+              onPressed: _onPress,
+              icon: Icon(Icons.search),
             ),
-          ),
-          Text(
-            'Privilege',
-            textDirection: TextDirection.ltr,
-            style: TextStyle(
-              fontSize: 20,
-            ),
-          ),
-        ],
-      ),
-      // child: new Center(
-      //   child: Text(
-      //     'Welcome Home!',
-      //     textDirection: TextDirection.ltr,
-      //     style: TextStyle(
-      //       fontWeight: FontWeight.w900,
-      //       fontStyle: FontStyle.italic,
-      //       fontSize: 35,
-      //     ),
-      //   ),
-      // ),
-    );
+            IconButton(
+                onPressed: () => debugPrint('Icon Tapped2'),
+                icon: Icon(Icons.list)),
+          ],
+        ),
+        backgroundColor: Colors.lightBlue
+        // )
+        // return new Container(
+        //   color: Colors.green,
+        //   alignment: Alignment.center,
+
+        //   child: Stack(
+        //     alignment: Alignment.bottomCenter,
+        //     children: [
+        //       const Text('Hello there'),
+        //       const Text('World'),
+        //       const Text('1')
+        //     ],
+        //   ),
+        // child: new Row(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: [
+        //     Text(
+        //       'Praise',
+        //       textDirection: TextDirection.ltr,
+        //       style: TextStyle(
+        //         fontSize: 20,
+        //       ),
+        //     ),
+        //     Text(
+        //       'Eunice',
+        //       textDirection: TextDirection.ltr,
+        //       style: TextStyle(
+        //         fontSize: 20,
+        //       ),
+        //     ),
+        //     Text(
+        //       'Privilege',
+        //       textDirection: TextDirection.ltr,
+        //       style: TextStyle(
+        //         fontSize: 20,
+        //       ),
+        //     ),
+        //   ],
+        // ),
+        // child: new Center(
+        //   child: Text(
+        //     'Welcome Home!',
+        //     textDirection: TextDirection.ltr,
+        //     style: TextStyle(
+        //       fontWeight: FontWeight.w900,
+        //       fontStyle: FontStyle.italic,
+        //       fontSize: 35,
+        //     ),
+        //   ),
+        // ),
+        );
   }
 }
