@@ -10,6 +10,25 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  String _welcomeString = '';
+
+  void _erase() {
+    setState(() {
+      _userController.clear();
+      _passwordController.clear();
+    });
+  }
+
+  void _showWelcome() {
+    setState(() {
+      _userController.text = 'Hello';
+      // if (_userController.text.isNotEmpty &&
+      //     _passwordController.text.isNotEmpty) {
+      //   _welcomeString = _userController.text;
+      // } else
+      //   _welcomeString = '';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +55,7 @@ class _LoginState extends State<Login> {
       backgroundColor: Colors.blueGrey,
       body: Container(
         alignment: Alignment.topCenter,
-        child: Column(
+        child: ListView(
           children: [
             Image.asset(
               'images/face.png',
@@ -63,10 +82,9 @@ class _LoginState extends State<Login> {
                     controller: _passwordController,
                     decoration: InputDecoration(
                       hintText: 'Password',
-                      icon: Icon(
-                        Icons.lock,
-                      ),
+                      icon: Icon(Icons.lock),
                     ),
+                    obscureText: true,
                   ),
                   Padding(
                     padding: EdgeInsets.all(10.5),
@@ -77,7 +95,7 @@ class _LoginState extends State<Login> {
                         Container(
                           margin: const EdgeInsets.only(left: 38.0),
                           child: ElevatedButton(
-                            onPressed: null,
+                            onPressed: _showWelcome,
                             child: Text('Login'),
                             style: ButtonStyle(
                               backgroundColor:
@@ -91,7 +109,7 @@ class _LoginState extends State<Login> {
                         Container(
                           margin: const EdgeInsets.only(left: 168.0),
                           child: ElevatedButton(
-                            onPressed: null,
+                            onPressed: _erase,
                             child: Text('Clear'),
                             style: ButtonStyle(
                               backgroundColor:
@@ -112,7 +130,7 @@ class _LoginState extends State<Login> {
               padding: const EdgeInsets.all(10.0),
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Text('Welcome',
+              Text('Welcome $_welcomeString ',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 19.4,
