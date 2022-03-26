@@ -73,9 +73,7 @@ class _LoginState extends State<Login> {
                     controller: _userController,
                     decoration: InputDecoration(
                       hintText: 'Username',
-                      icon: Icon(
-                        Icons.person,
-                      ),
+                      icon: Icon(Icons.person),
                     ),
                   ),
                   TextField(

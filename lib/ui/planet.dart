@@ -8,6 +8,30 @@ class Planet extends StatefulWidget {
 }
 
 class _PlanetState extends State<Planet> {
+  final TextEditingController _weightController = new TextEditingController();
+
+  int radioValue = 0;
+  double _finalResult = 0.0;
+
+  void handleRadioValueChange(value) {
+    setState(() {
+      radioValue = value;
+
+      switch (radioValue) {
+        case 0:
+          _finalResult = calculateWeight(_weightController.text, 0.06);
+          break;
+
+        case 1:
+          _finalResult = calculateWeight(_weightController.text, 0.38);
+          break;
+
+        case 2:
+          _finalResult = calculateWeight(_weightController.text, 0.91);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,12 +70,57 @@ class _PlanetState extends State<Planet> {
               child: Column(
                 children: [
                   TextField(
-                    controller: null,
+                    controller: _weightController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       labelText: 'Your Weight on Earth',
                       hintText: 'In Pounds',
                       icon: Icon(Icons.person_outline),
+                    ),
+                  ),
+                  Padding(padding: EdgeInsets.all(5.0)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Radio(
+                        activeColor: Colors.brown,
+                        value: 0,
+                        groupValue: radioValue,
+                        onChanged: handleRadioValueChange,
+                      ),
+                      Text(
+                        'Pluto',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      Radio(
+                        activeColor: Colors.red,
+                        value: 1,
+                        groupValue: radioValue,
+                        onChanged: handleRadioValueChange,
+                      ),
+                      Text(
+                        'Mars',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      Radio(
+                        activeColor: Colors.orangeAccent,
+                        value: 2,
+                        groupValue: radioValue,
+                        onChanged: handleRadioValueChange,
+                      ),
+                      Text(
+                        'Venus',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
+                  ),
+                  Padding(padding: EdgeInsets.all(15.0)),
+                  Text(
+                    '$_finalResult',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 19.4,
+                      fontWeight: FontWeight.w500,
                     ),
                   )
                 ],
@@ -61,5 +130,14 @@ class _PlanetState extends State<Planet> {
         ),
       ),
     );
+  }
+
+  double calculateWeight(String weight, double multiplier) {
+    if (int.parse(weight).toString().isNotEmpty && int.parse(weight) > 0) {
+      return int.parse(weight) * multiplier;
+    } else {
+      print("Wrong");
+      return int.parse('180') * 0.38;
+    }
   }
 }
